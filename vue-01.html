@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+
+		body{text-align: center;}
+		.tab{
+			width: 300px;
+			height: 500px;
+			border: 1px solid #666666;
+			margin: auto;
+		}
+		label{
+			float: left;
+			list-style:none;
+			height: 35px;
+			width: 33%;
+			border-bottom: 1px solid black;
+			border-right: 1px solid black;
+			line-height: 35px;
+		}
+		label:hover{
+			background: skyblue;
+			transition: all 0.2s;
+			transform: scale(1.1);
+		}
+	</style>
+	<body>
+		<div id="app">
+			<h1>{{message}}</h1>
+			<hr />
+			<input type="text" name="" id="" value="" v-model='reverse'/ placeholder="请输入旋转内容">
+			<p>旋转内容：{{now}}</p>
+			<p>旋转内容：{{onreverse()}}</p>
+			<hr />
+			<input type="text" name="" id="" v-model="queation" placeholder="监听值得改变" value="" />
+			<p>ps：{{msg}}</p>
+			<hr />
+			<hr />
+			<div class="tab">
+				<ul style="list-style: none; padding: 0;margin: 0">
+					<input type="radio" v-model="val" id="1" name="1" value="1"  style="display: none;"/>
+					<label for="1">第一页</label>
+					<input type="radio"  v-model="val" id="2" name="2" value="2" style="display: none;"/>
+					<label for="2">第二页</label>
+					<input type="radio" v-model="val" id="3" name="3" value="3" style="display: none;"/>
+					<label for="3">第三页</label>
+				</ul>
+				<br />
+				<br />
+				<br />
+				<hr />
+				<div v-if="val == 1">2134567876543213456432第一页</div>
+				<div v-else-if="val == 2">是打开河师大合适的就看啥看好的（第二页）</div>
+				<div v-else-if="val == 3">gaduhjjgdkslaksla（第三页）</div>
+			</div>
+
+		</div>
+
+		
+	</body>
+	<script type="text/javascript" src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		var myvue = new Vue({
+			el:'#app',
+			data:{
+				message:"vue的指令测试",
+				reverse:'',
+				msg:'',
+				queation:'',
+				val:'1',
+			},
+			watch:{
+				queation:function(){
+					this.msg = "上面的值发生了改变"
+				}
+			},
+			computed:{
+				onreverse:function(){
+					return this.reverse.split('').reverse().join('')
+				},
+				now:function(){
+					return Date.now()
+				},
+			},
+			methods:{
+				onreverse:function(){
+					return this.reverse.split('').reverse().join('')
+				}
+			}
+		})
+	</script>
+</html>
